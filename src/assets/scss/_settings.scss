@@ -1,0 +1,55 @@
+body {
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1.2;
+  color: var(--light);
+  height: 100%;
+  font-family: var(--montserrat);
+  font-style: normal;
+}
+
+.container {
+  max-width: var(--container-width);
+  padding: 0 var(--container-offset);
+}
+
+.heading-h1 {
+  color: var(--white);
+  font-size: 104px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.heading-h2 {
+  color: var(--white);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.heading-h4 {
+  color: var(--white);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.text-normal {
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.text-small {
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.text-small-bold {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.55;
+}
