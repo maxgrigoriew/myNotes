@@ -1,12 +1,14 @@
 :root {
-  --montserrat: 'Montserrat';
-  --cera-pro: 'CeraPro';
+  --montserrat: 'Montserrat', sans-serif;
+  --cera-pro: 'CeraPro', sans-serif;
 
   --content-width: 100%;
   --container-offset: 160px;
   --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
   --max-offset: calc(max(calc((100vw - var(--content-width)) / 2), var(--container-offset)) * -1);
   --transition: 0.3s;
+  --header-height: 136px;
+
 
   // colors
   --dark: #0A1F38;
@@ -20,22 +22,28 @@
 
   --gray: #9DA5AF;
   --white: #FFFFFF;
-
 }
 
-@media (max-width: 1366px) {
+$desktop: 1366px;
+$laptop: 1200px;
+$tablet-large: 992px;
+$tablet: 768px;
+$mobile: 576px;
+
+@media (max-width: $desktop) {
   :root {
     --container-offset: 80px;
+    --header-height: 96px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $tablet) {
   :root {
     --container-offset: 40px;
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: $mobile) {
   :root {
     --container-offset: 20px;
   }

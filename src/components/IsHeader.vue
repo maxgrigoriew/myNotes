@@ -11,7 +11,7 @@ export default {
   <header class="header">
     <div class="container">
       <div class="header__inner">
-        <a href="#" class="logo">
+        <a href="#" class="header__logo">
           <img
             src="./../assets/images/logo.svg"
             alt="Логотип"
@@ -27,11 +27,28 @@ export default {
 
 <style lang="scss">
 .header {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--dark);
   &__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 40px 0;
+  }
+}
+
+@media (max-width: 1366px) {
+  .header {
+    &__logo {
+      width: 154px;
+    }
   }
 }
 </style>
