@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import IsButton from "@/components/IsButton.vue";
 export default {
   components: {
@@ -26,6 +26,7 @@ export default {
 </template>
 
 <style lang="scss">
+@import "../assets/scss/_vars.scss";
 .header {
   position: fixed;
   z-index: 10;
@@ -44,7 +45,7 @@ export default {
   }
 }
 
-@media (max-width: 1366px) {
+@media (max-width: $mobile) {
   .header {
     &__logo {
       width: 154px;

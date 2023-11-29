@@ -1,9 +1,12 @@
 
 <script>
 import IsHeader from "@/components/IsHeader.vue";
+import IsModal from "@/components/IsModal.vue";
+
 export default {
   components: {
     IsHeader,
+    IsModal,
   },
 };
 </script>
@@ -12,15 +15,16 @@ export default {
 <template>
   <div class="home">
     <IsHeader />
+    <IsModal />
 
     <div class="hero">
       <div class="container">
         <div class="hero__inner">
           <div class="hero__content">
-            <h1 class="hero__title heading-h1">Мои заметки</h1>
-            <p class="hero__subtitle heading-h3">
+            <is-text h1 class="hero__title">Мои заметки</is-text>
+            <is-text tag="p" h3 class="hero__subtitle">
               Не забывай о важном, храни его в облаке.
-            </p>
+            </is-text>
           </div>
           <img class="hero__img" src="./../assets/images/hero.png" alt="" />
         </div>
