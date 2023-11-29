@@ -78,11 +78,19 @@ export default defineComponent({
     height: 72px;
     padding: 0 56px 0 30px;
     border-radius: 36px;
-    border: none;
+    border: 2px solid transparent;
+    transition: border var(--transition);
+
     &::placeholder {
       color: var(--gray);
       font-size: 18px;
       line-height: 1.55;
+    }
+    &:focus {
+      border: 2px solid var(--green-light);
+    }
+    &:hover {
+      border: 2px solid var(--green-light);
     }
   }
 
