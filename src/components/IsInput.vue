@@ -1,37 +1,35 @@
-
 <script>
-import { ref, defineComponent } from "vue";
+import { ref, defineComponent } from 'vue';
 
-export default defineComponent({
+export default {
   props: {
     title: {
       type: String,
     },
     type: {
       type: String,
-      default: "text",
+      default: 'text',
     },
     value: {
       type: String,
     },
     placeholder: {
       type: String,
-      default: "Введите значение",
+      default: 'Введите значение',
     },
   },
 
-  setup() {
-    const isVisiblePassword = ref(false);
-
-    const changeVisiblePassword = () =>
-      (isVisiblePassword.value = !isVisiblePassword.value);
-
+  data() {
     return {
-      isVisiblePassword,
-      changeVisiblePassword,
+      isVisiblePassword: false,
     };
   },
-});
+  methods: {
+    changeVisiblePassword() {
+      this.isVisiblePassword = !this.isVisiblePassword;
+    },
+  },
+};
 </script>
 <template>
   <div class="input">
@@ -55,7 +53,11 @@ export default defineComponent({
         src="../assets/images/icon-visible.svg"
         alt=""
       />
-      <img v-else src="../assets/images/icon-hide.svg" alt="" />
+      <img
+        v-else
+        src="../assets/images/icon-hide.svg"
+        alt=""
+      />
     </button>
   </div>
 </template>

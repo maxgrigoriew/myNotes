@@ -1,7 +1,6 @@
-
 <script>
-import IsHeader from "@/components/IsHeader.vue";
-import IsModal from "@/components/IsModal.vue";
+import IsHeader from '@/components/IsHeader.vue';
+import IsModal from '@/components/IsModal.vue';
 
 export default {
   components: {
@@ -10,7 +9,6 @@ export default {
   },
 };
 </script>
-
 
 <template>
   <div class="home">
@@ -21,12 +19,24 @@ export default {
       <div class="container">
         <div class="hero__inner">
           <div class="hero__content">
-            <is-text h1 class="hero__title">Мои заметки</is-text>
-            <is-text tag="p" h3 class="hero__subtitle">
+            <is-text
+              h1
+              class="hero__title"
+              >Мои заметки</is-text
+            >
+            <is-text
+              tag="p"
+              h3
+              class="hero__subtitle"
+            >
               Не забывай о важном, храни его в облаке.
             </is-text>
           </div>
-          <img class="hero__img" src="./../assets/images/hero.png" alt="" />
+          <img
+            class="hero__img"
+            src="./../assets/images/hero.png"
+            alt=""
+          />
         </div>
       </div>
     </div>
@@ -34,7 +44,7 @@ export default {
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_vars.scss";
+@import '../assets/scss/_vars.scss';
 
 .hero {
   --content-width: 488px;

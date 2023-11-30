@@ -1,8 +1,12 @@
 <script>
-import IsButton from "@/components/IsButton.vue";
+import IsButton from '@/components/IsButton.vue';
 export default {
   components: {
     IsButton,
+  },
+
+  mounted() {
+    console.log(this.$route.name);
   },
 };
 </script>
@@ -11,7 +15,10 @@ export default {
   <header class="header">
     <div class="container">
       <div class="header__inner">
-        <a href="#" class="header__logo">
+        <a
+          href="#"
+          class="header__logo"
+        >
           <img
             src="./../assets/images/logo.svg"
             alt="Логотип"
@@ -19,14 +26,24 @@ export default {
             height="50px"
           />
         </a>
-        <is-button></is-button>
+        <is-button
+          tag="a"
+          @click="$router.push('/admin')"
+          v-if="$route.name === 'home'"
+          >Войти</is-button
+        >
+        <is-button
+          v-if="$route.name === 'admin'"
+          @click="$router.push('/')"
+          >выйти</is-button
+        >
       </div>
     </div>
   </header>
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_vars.scss";
+@import '../assets/scss/_vars.scss';
 .header {
   position: fixed;
   z-index: 10;

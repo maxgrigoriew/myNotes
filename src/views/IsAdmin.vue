@@ -1,16 +1,18 @@
-
 <script>
-import IsHeader from "@/components/IsHeader.vue";
-import IsModal from "@/components/IsModal.vue";
+import IsHeader from '@/components/IsHeader.vue';
+import IsModal from '@/components/IsModal.vue';
 
 export default {
   components: {
     IsHeader,
     IsModal,
   },
+
+  mounted() {
+    console.log(this.$route.path);
+  },
 };
 </script>
-
 
 <template>
   <div class="home">
@@ -28,7 +30,7 @@ export default {
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_vars.scss";
+@import '../assets/scss/_vars.scss';
 
 .admin {
   --content-width: 488px;

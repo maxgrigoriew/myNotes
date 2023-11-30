@@ -1,21 +1,16 @@
 <script>
-import { ref } from "vue";
 export default {
-  setup() {
-    const value = ref("");
-    const modal = ref("");
-    const isOpenModal = ref(true);
-
-    const onClickOutside = () => {
-      isOpenModal.value = false;
-    };
-
+  data() {
     return {
-      value,
-      onClickOutside,
-      modal,
-      isOpenModal,
+      value: '',
+      modal: '',
+      isOpenModal: true,
     };
+  },
+  methods: {
+    onClickOutside() {
+      this.isOpenModal = false;
+    },
   },
 };
 </script>
@@ -28,17 +23,36 @@ export default {
       class="modal modal--active"
       v-click-outside="onClickOutside"
     >
-      <is-button class="modal__close" @click="onClickOutside" round
+      <is-button
+        class="modal__close"
+        @click="onClickOutside"
+        round
         >x</is-button
       >
       <div class="modal__inner">
-        <is-text v-if="false" h2 bold class="modal__title"
+        <is-text
+          v-if="false"
+          h2
+          bold
+          class="modal__title"
           >Вход в ваш аккаунт</is-text
         >
-        <is-text v-else h2 bold class="modal__title">Регистрация</is-text>
+        <is-text
+          v-else
+          h2
+          bold
+          class="modal__title"
+          >Регистрация</is-text
+        >
         <div class="modal__inputs">
-          <is-input v-model="value" title="Логин" />
-          <is-input v-model="value" title="Пароль" />
+          <is-input
+            v-model="value"
+            title="Логин"
+          />
+          <is-input
+            v-model="value"
+            title="Пароль"
+          />
           <is-input
             v-if="true"
             type="password"
@@ -49,14 +63,23 @@ export default {
         <div class="modal__bottom-wrapper">
           <div class="modal__bottom-inner">
             <div class="modal__bottom-buttons">
-              <is-text tag="span" h6 gray class="modal__bottom-text"
+              <is-text
+                tag="span"
+                h6
+                gray
+                class="modal__bottom-text"
                 >Нет аккаунта?</is-text
               >
               <button class="modal__bottom-btn">Зарегистрируйтесь</button>
             </div>
             <is-button>Войти</is-button>
           </div>
-          <is-text h6 v-if="true" error class="modal__bottom-error">
+          <is-text
+            h6
+            v-if="true"
+            error
+            class="modal__bottom-error"
+          >
             Пользователь с таким логином не найден
           </is-text>
         </div>
@@ -66,7 +89,7 @@ export default {
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_vars.scss";
+@import '../assets/scss/_vars.scss';
 
 .modal {
   display: none;

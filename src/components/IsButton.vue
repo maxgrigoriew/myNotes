@@ -1,28 +1,33 @@
 <script>
-import { computed, defineComponent } from "vue";
-
-export default defineComponent({
+export default {
   props: {
     round: {
       type: Boolean,
       default: false,
     },
+    tag: {
+      type: String,
+      default: 'button',
+    },
   },
 
-  setup(props) {
-    const classObject = computed(() => ({
-      round: props.round,
-    }));
-
-    return {
-      classObject,
-    };
+  computed: {
+    classObject() {
+      return {
+        round: this.round,
+      };
+    },
   },
-});
+};
 </script>
 
 <template>
-  <button class="btn text-normal" :class="classObject" @click="$emit('click')">
+  <component
+    :is="tag"
+    class="btn text-normal"
+    :class="classObject"
+    @click="$emit('click')"
+  >
     <!-- <svg
       xmlns="http://www.w3.org/2000/svg"
       width="34"
@@ -36,11 +41,11 @@ export default defineComponent({
       />
     </svg> -->
     <slot>Войти</slot>
-  </button>
+  </component>
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_vars.scss";
+@import '../assets/scss/_vars.scss';
 
 .btn {
   display: flex;

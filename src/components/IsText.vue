@@ -1,11 +1,9 @@
 <script>
-import { computed, defineComponent } from "vue";
-
-export default defineComponent({
+export default {
   props: {
     tag: {
       type: String,
-      default: "div",
+      default: 'div',
     },
     error: {
       type: Boolean,
@@ -15,7 +13,7 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
-    "green-light": {
+    'green-light': {
       type: Boolean,
       default: false,
     },
@@ -52,39 +50,41 @@ export default defineComponent({
       default: false,
     },
   },
-
-  setup(props) {
-    const classObject = computed(() => ({
-      red: props.color,
-      error: props.error,
-      white: props.white,
-      gray: props.gray,
-      "green-light": props.greenLight,
-
-      h1: props.h1,
-      h2: props.h2,
-      h3: props.h3,
-      h4: props.h4,
-      h5: props.h5,
-      h6: props.h6,
-      bold: props.bold,
-    }));
-
-    return {
-      classObject,
-    };
+  data() {
+    return {};
   },
-});
+  computed: {
+    classObject() {
+      return {
+        red: this.color,
+        error: this.error,
+        white: this.white,
+        gray: this.gray,
+        'green-light': this.greenLight,
+        h1: this.h1,
+        h2: this.h2,
+        h3: this.h3,
+        h4: this.h4,
+        h5: this.h5,
+        h6: this.h6,
+        bold: this.bold,
+      };
+    },
+  },
+};
 </script>
 
 <template>
-  <component :is="tag" :class="classObject">
+  <component
+    :is="tag"
+    :class="classObject"
+  >
     <slot />
   </component>
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_vars.scss";
+@import '../assets/scss/_vars.scss';
 .h1 {
   color: var(--white);
   font-size: 104px;
