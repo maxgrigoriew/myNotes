@@ -1,16 +1,29 @@
 <script>
+import { mapActions, mapMutations, mapState } from 'vuex';
+
 export default {
   data() {
     return {
-      value: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      errors: [],
       modal: '',
       isOpenModal: true,
     };
   },
+  computed: mapState({
+    isLoginModal: (state) => state.isLoginModal,
+  }),
   methods: {
     onClickOutside() {
       this.isOpenModal = false;
+      this.changeStatusModal();
+      this.changeOpenModal();
     },
+
+    ...mapMutations(['changeStatusModal', 'changeOpenModal']),
+    ...mapActions(['auth']),
   },
 };
 </script>
@@ -31,7 +44,7 @@ export default {
       >
       <div class="modal__inner">
         <is-text
-          v-if="false"
+          v-if="isLoginModal"
           h2
           bold
           class="modal__title"
@@ -46,23 +59,27 @@ export default {
         >
         <div class="modal__inputs">
           <is-input
-            v-model="value"
+            v-model="email"
             title="Логин"
           />
           <is-input
-            v-model="value"
+            v-model="password"
             title="Пароль"
           />
           <is-input
-            v-if="true"
+            v-if="!isLoginModal"
             type="password"
-            v-model="value"
+            v-model="confirmPassword"
             title="Пароль ещё раз"
           />
         </div>
+        {{ email }}1
         <div class="modal__bottom-wrapper">
           <div class="modal__bottom-inner">
-            <div class="modal__bottom-buttons">
+            <div
+              class="modal__bottom-buttons"
+              v-if="isLoginModal"
+            >
               <is-text
                 tag="span"
                 h6
@@ -70,17 +87,32 @@ export default {
                 class="modal__bottom-text"
                 >Нет аккаунта?</is-text
               >
-              <button class="modal__bottom-btn">Зарегистрируйтесь</button>
+              <button
+                class="modal__bottom-link"
+                @click="changeStatusModal"
+              >
+                Зарегистрируйтесь
+              </button>
             </div>
-            <is-button>Войти</is-button>
+
+            <is-button
+              class="modal__bottom-btn"
+              @click="auth({ email, password })"
+              >Войти</is-button
+            >
           </div>
           <is-text
+            v-if="errors.length"
             h6
-            v-if="true"
             error
             class="modal__bottom-error"
           >
-            Пользователь с таким логином не найден
+            <span
+              v-for="(item, ind) in errors"
+              :key="ind"
+            >
+              {{ item }}.
+            </span>
           </is-text>
         </div>
       </div>
@@ -140,7 +172,7 @@ export default {
       margin-right: 4px;
     }
 
-    &-btn {
+    &-link {
       border: none;
       cursor: pointer;
       background-color: transparent;
@@ -149,6 +181,10 @@ export default {
       font-weight: 700;
       line-height: 1.55;
       padding: 0;
+    }
+
+    &-btn {
+      margin-left: auto;
     }
 
     &-error {
@@ -215,7 +251,7 @@ export default {
         order: 2;
       }
 
-      &-btn {
+      &-link {
         font-size: 14px;
       }
 

@@ -1,11 +1,24 @@
 <script>
+import { mapState, mapActions } from 'vuex';
 import IsHeader from '@/components/IsHeader.vue';
 import IsModal from '@/components/IsModal.vue';
+import { http } from '@/http';
+import axios from 'axios';
+import AuthServices from '@/servises/AuthServises';
 
 export default {
   components: {
     IsHeader,
     IsModal,
+  },
+  computed: mapState({
+    isOpenModal: (state) => state.isOpenModal,
+  }),
+  methods: {
+    ...mapActions(['auth']),
+  },
+  mounted() {
+    this.auth({ email: 'test@yandex.ru', password: '1234' });
   },
 };
 </script>
@@ -13,7 +26,7 @@ export default {
 <template>
   <div class="home">
     <IsHeader />
-    <IsModal />
+    <IsModal v-if="isOpenModal" />
 
     <div class="hero">
       <div class="container">

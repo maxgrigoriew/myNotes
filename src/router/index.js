@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import IsHome from '../views/IsHome.vue'
 import IsAdmin from '../views/IsAdmin.vue'
-
+import store from '../store/index'
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,7 +14,15 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component: IsAdmin
+    component: IsAdmin,
+    beforeEnter: (to, from, next) => {
+      if (store.state.isAuth) {
+        next()
+      } else {
+
+        next('/')
+      }
+    }
   }
 ]
 
@@ -23,5 +31,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
 
 export default router
