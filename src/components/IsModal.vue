@@ -2,12 +2,20 @@
 import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
+  emits: ['auth'],
+  props: {
+    errors: {
+      type: Array,
+    },
+  },
   data() {
     return {
-      email: '',
-      password: '',
+      login: {
+        email: '',
+        password: '',
+      },
+
       confirmPassword: '',
-      errors: [],
       modal: '',
       isOpenModal: true,
     };
@@ -21,9 +29,10 @@ export default {
       this.changeStatusModal();
       this.changeOpenModal();
     },
-
+    auth() {
+      this.$emit('auth', this.login);
+    },
     ...mapMutations(['changeStatusModal', 'changeOpenModal']),
-    ...mapActions(['auth']),
   },
 };
 </script>
@@ -59,11 +68,11 @@ export default {
         >
         <div class="modal__inputs">
           <is-input
-            v-model="email"
+            v-model="login.email"
             title="Логин"
           />
           <is-input
-            v-model="password"
+            v-model="login.password"
             title="Пароль"
           />
           <is-input
@@ -73,7 +82,6 @@ export default {
             title="Пароль ещё раз"
           />
         </div>
-        {{ email }}1
         <div class="modal__bottom-wrapper">
           <div class="modal__bottom-inner">
             <div

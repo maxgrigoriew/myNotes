@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import IsButton from '@/components/IsButton.vue';
 export default {
   components: {
@@ -8,10 +8,7 @@ export default {
   computed: mapState({
     isLoginModal: (state) => state.isLoginModal,
   }),
-  methods: { ...mapMutations(['changeOpenModal']) },
-  mounted() {
-    console.log(this.$route.name);
-  },
+  methods: { ...mapMutations(['changeOpenModal']), ...mapActions(['logout']) },
 };
 </script>
 
@@ -32,13 +29,20 @@ export default {
         </a>
         <is-button
           tag="a"
-          @click="$store.commit('changeOpenModal')"
+          @click="
+            {
+              $store.state.isAuth
+                ? $router.push('/admin')
+                : $store.commit('changeOpenModal');
+            }
+          "
           v-if="$route.name === 'home'"
           >Войти</is-button
         >
+
         <is-button
           v-if="$route.name === 'admin'"
-          @click="$router.push('/')"
+          @click="logout"
           >выйти</is-button
         >
       </div>

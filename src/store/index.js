@@ -2,14 +2,16 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { httpClient } from '@/services'
 import AuthServices from '@/servises/AuthServises'
+import router from './../router/index'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: null,
     isAuth: false,
     isOpenModal: false,
     isLoginModal: true,
+    errors: []
   },
   getters: {
   },
@@ -20,37 +22,31 @@ export default new Vuex.Store({
     changeStatusModal(state) {
       state.isLoginModal = !state.isLoginModal
     },
-    setToken(state, token) {
-      state.token = token
-    },
     setIsAuth(state, isAuth) {
       state.isAuth = isAuth
     },
+    setErrors(state, errors) {
+      state.errors = errors
+    },
   },
   actions: {
-    async ping({ state, commit }) {
-      try {
-        const response = await AuthServices.ping()
-      } catch (e) {
-        console.log(e)
-      }
-    },
-
     async auth({ state, commit }, { email, password }) {
       try {
         const response = await AuthServices.auth(email, password)
-
         localStorage.setItem('token', response.data.accessToken)
         commit('setIsAuth', true)
-        commit('setToken', response.data.accessToken)
+        router.push('admin')
       } catch (e) {
-        console.log(email, password)
-
-        console.log(e)
-
+        commit('setErrors', e.response.data.message)
       }
+    },
+    async logout({ state, commit }) {
+      localStorage.setItem('token', null)
+      commit('setIsAuth', false)
+      commit('setToken', null)
+      router.push('/')
+
     }
   },
-  modules: {
-  }
+
 })
